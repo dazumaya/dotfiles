@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES=( .bin .zshrc .vim .vimrc .screenrc .gitconfig )
+DOTFILES=( bin .zshrc .vim .vimrc .screenrc .gitconfig )
 
 for file in ${DOTFILES[@]}
 do
