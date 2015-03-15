@@ -154,3 +154,5 @@ source /usr/local/etc/bash_completion.d/git-prompt.sh
 setopt PROMPT_SUBST ; PS1='%F{magenta}[%f%n@%m %c$(__git_ps1 " (%s)")%F{magenta}]\$%f '
 
 export PATH=$HOME/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

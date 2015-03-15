@@ -7,6 +7,6 @@ do
   ln -sn $HOME/dotfiles/$file $HOME/$file
 done
 
-if [ ! -d ~/.vim/bundle/vundle ]; then
-  mkdir -p ~/.vim/bundle && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim -c ':BundleInstall'
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+  mkdir -p ~/.vim/bundle && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall
 fi
