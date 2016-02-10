@@ -17,6 +17,7 @@ Plugin 'VimClojure'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'google.vim'
 Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on

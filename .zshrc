@@ -150,9 +150,7 @@ esac
 ## load user .zshrc configuration file
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-setopt PROMPT_SUBST ; PS1='%F{magenta}[%f%n@%m %c$(__git_ps1 " (%s)")%F{magenta}]\$%f '
 
-export PATH=$HOME/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$HOME/bin:$GOPATH/bin
