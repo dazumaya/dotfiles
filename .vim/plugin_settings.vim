@@ -119,3 +119,5 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+let g:vim_markdown_folding_disabled = 1
