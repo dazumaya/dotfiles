@@ -2,5 +2,5 @@
 
 ## setup
 ```
-cd && git clone git@github.com:dazumaya/dotfiles.git && dotfiles/setup.sh
+cd && git clone git@github.com:dazumaya/dotfiles.git .dotfiles && .dotfiles/setup.sh
 ```

@@ -4,7 +4,7 @@ DOTFILES=( bin .zshrc .vim .vimrc .screenrc .gitconfig )
 
 for file in ${DOTFILES[@]}
 do
-  ln -sn $HOME/dotfiles/$file $HOME/$file
+  ln -sfn $HOME/.dotfiles/$file $HOME/$file
 done
 
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
