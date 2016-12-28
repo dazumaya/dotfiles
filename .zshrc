@@ -13,23 +13,22 @@ export JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 #
 autoload colors
 colors
-case ${UID} in
-0)
-  PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
-  PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-  SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-  ;;
-*)
-  #PROMPT="%{${fg[red]}%}%/%%%{${reset_color}%} "
-  PROMPT="%{${fg[magenta]}%}[%{${reset_color}%}%n@%m %~%{${fg[magenta]}%}]$%{${reset_color}%} "
-  PROMPT2="%{${fg[red]}%}%_%%%{${reset_color}%} "
-  SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-    PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-  ;;
-esac
+
+DEFAULT=$'\U26A1'
+ERROR=$'\U1F608'
+PROMPT='%(?.%F{green}${DEFAULT}.%F{red}${ERROR})  < %f'
+
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' formats '%F{green}%}[%b]%{%f'
+zstyle ':vcs_info:*' actionformats '%F{red}%}[%b|%a]%{%f'
+function vcs_echo {
+  vcs_info
+  if [ -n "${vcs_info_msg_0_}" ]; then
+    echo -n "%{${vcs_info_msg_0_}%}"
+  fi
+}
+RPROMPT='%F{cyan}[%m %c]%f`vcs_echo`'
 
 # auto change directory
 #

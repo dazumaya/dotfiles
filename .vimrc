@@ -9,6 +9,7 @@ colorscheme molokai
 set tags=tags
 
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd! FileType go setlocal shiftwidth=4 tabstop=4
 
 filetype plugin indent on
 syntax on
