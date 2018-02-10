@@ -87,8 +87,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-let g:go_fmt_command = "goimports"
-
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
@@ -120,7 +118,16 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" markdown
 let g:vim_markdown_folding_disabled = 1
+
+" vim-json
+let g:vim_json_syntax_conceal = 0
+
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+let g:go_version_warning = 0
 
 " lightline.vim
 let g:lightline = {
