@@ -6,6 +6,7 @@
 #
 export LANG=ja_JP.UTF-8
 export JAVA_OPTIONS="-Dfile.encoding=UTF-8"
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 ## Default shell configuration
 #
@@ -14,21 +15,21 @@ export JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 autoload colors
 colors
 
-DEFAULT=$'\U26A1'
-ERROR=$'\U1F608'
-PROMPT='%(?.%F{green}${DEFAULT}.%F{red}${ERROR})  < %f'
+#DEFAULT=$'\U26A1  '
+#ERROR=$'\U1F608  '
+PROMPT='[%M %c]`vcs_echo`
+%(?.%F{green}${DEFAULT}.%F{red}${ERROR})%# %f'
 
 autoload -Uz vcs_info
 setopt prompt_subst
-zstyle ':vcs_info:*' formats '%F{green}%}[%b]%{%f'
-zstyle ':vcs_info:*' actionformats '%F{red}%}[%b|%a]%{%f'
+zstyle ':vcs_info:*' formats '%F{cyan}(%r)%f-%F{green}[%b]%f'
+zstyle ':vcs_info:*' actionformats '%F{yellow}(%r)%f-%F{red}[%b|%a]%f'
 function vcs_echo {
   vcs_info
   if [ -n "${vcs_info_msg_0_}" ]; then
     echo -n "%{${vcs_info_msg_0_}%}"
   fi
 }
-RPROMPT='%F{cyan}[%m %c]%f`vcs_echo`'
 
 # auto change directory
 #
