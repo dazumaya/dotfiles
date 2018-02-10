@@ -147,10 +147,25 @@ kterm*|xterm*)
   ;;
 esac
 
+function peco-select-history() {
+  BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
+  CURSOR=$#BUFFER             # カーソルを文末に移動
+  zle -R -c                   # refresh
+}
+zle -N peco-select-history
+bindkey '^R' peco-select-history
+
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src
+
 ## load user .zshrc configuration file
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
-
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export PATH=$PATH:$HOME/bin:$GOPATH/bin

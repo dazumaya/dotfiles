@@ -1,10 +1,16 @@
 #!/bin/sh
 
-DOTFILES=( bin .zshrc .vim .vimrc .screenrc .gitconfig )
-
+DOTFILES=( .zprofile .zshrc .vim .vimrc .screenrc .gitconfig )
 for file in ${DOTFILES[@]}
 do
-  ln -sfn $HOME/.dotfiles/$file $HOME/$file
+  ln -sfn $PWD/$file $HOME/$file
+done
+
+mkdir -p $HOME/bin
+BIN=( git_diff_wrapper pero )
+for file in ${BIN[@]}
+do
+  ln -sfn $PWD/bin/$file $HOME/bin/$file
 done
 
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
