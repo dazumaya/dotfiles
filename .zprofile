@@ -1,2 +1,2 @@
 export GOPATH=$HOME
-export PATH=$PATH:/usr/local/opt/go/libexec/bin:$HOME/bin
+export PATH=$PATH:$HOME/bin

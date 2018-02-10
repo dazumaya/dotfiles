@@ -15,22 +15,6 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 autoload colors
 colors
 
-#DEFAULT=$'\U26A1  '
-#ERROR=$'\U1F608  '
-PROMPT='[%M %c]`vcs_echo`
-%(?.%F{green}${DEFAULT}.%F{red}${ERROR})%# %f'
-
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats '%F{cyan}(%r)%f-%F{green}[%b]%f'
-zstyle ':vcs_info:*' actionformats '%F{yellow}(%r)%f-%F{red}[%b|%a]%f'
-function vcs_echo {
-  vcs_info
-  if [ -n "${vcs_info_msg_0_}" ]; then
-    echo -n "%{${vcs_info_msg_0_}%}"
-  fi
-}
-
 # auto change directory
 #
 setopt auto_cd
@@ -62,16 +46,6 @@ setopt nolistbeep
 #
 bindkey -e
 
-# historical backward/forward search with linehead string binded to ^P/^N
-#
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
-bindkey "\\ep" history-beginning-search-backward-end
-bindkey "\\en" history-beginning-search-forward-end
-
 ## Command history configuration
 #
 HISTFILE=~/.zsh_history
@@ -90,9 +64,6 @@ compinit
 # expand aliases before completing
 #
 setopt complete_aliases # aliased ls needs if file/dir completions work
-
-alias where="command -v"
-alias j="jobs -l"
 
 case "${OSTYPE}" in
 freebsd*|darwin*)
@@ -113,40 +84,13 @@ alias df="df -h"
 alias su="su -l"
 
 ## terminal configuration
-#
-unset LSCOLORS
-case "${TERM}" in
-xterm)
-  export TERM=xterm-256color
-  ;;
-kterm)
-  export TERM=kterm-color
-  # set BackSpace control character
-  stty erase
-  ;;
-cons25)
-  unset LANG
-  export LSCOLORS=ExfxCxdxBxegedabagacad
-  export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-  zstyle ':completion:*' list-colors \
-    'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
-  ;;
-esac
+export TERM=xterm-256color
+## set terminal title including current directory
+export LSCOLORS=gxfxcxdxbxegedabagacad
+export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-# set terminal title including current directory
-#
-case "${TERM}" in
-kterm*|xterm*)
-  precmd() {
-    echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-  }
-  export LSCOLORS=gxfxcxdxbxegedabagacad
-  export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-  zstyle ':completion:*' list-colors \
-    'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
-  ;;
-esac
-
+## history search
 function peco-select-history() {
   BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
   CURSOR=$#BUFFER             # カーソルを文末に移動
@@ -155,6 +99,7 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^R' peco-select-history
 
+# source search
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
@@ -166,6 +111,21 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-## load user .zshrc configuration file
-#
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+## zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+      echo; zplug install
+  fi
+fi
+# Then, source plugins and add commands to $PATH
+# zplug load --verbose
+zplug load
