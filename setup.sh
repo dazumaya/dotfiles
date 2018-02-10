@@ -13,6 +13,10 @@ do
   ln -sfn $PWD/bin/$file $HOME/bin/$file
 done
 
+if [ ! -f ~/bin/ack ]; then
+  curl https://beyondgrep.com/ack-2.22-single-file > ~/bin/ack && chmod 0755 ~/bin/ack
+fi
+
 if [ ! -f ~/.zplug/init.zsh ]; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 fi
