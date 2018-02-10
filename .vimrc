@@ -1,6 +1,6 @@
 filetype off
 
-source ~/.vim/vundles.vim
+source ~/.vim/plugin.vim
 source ~/.vim/common.vim
 source ~/.vim/plugin_settings.vim
 
