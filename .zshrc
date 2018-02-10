@@ -83,13 +83,6 @@ alias df="df -h"
 
 alias su="su -l"
 
-## terminal configuration
-export TERM=xterm-256color
-## set terminal title including current directory
-export LSCOLORS=gxfxcxdxbxegedabagacad
-export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
-
 ## history search
 function peco-select-history() {
   BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$LBUFFER" | sed 's/\\n/\n/')"
@@ -112,12 +105,20 @@ zle -N peco-src
 bindkey '^]' peco-src
 
 ## zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+source ~/.zplug/init.zsh
 
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "chrissicool/zsh-256color"
+case "${OSTYPE}" in
+darwin*)
+  zplug "plugins/ssh-agent",   from:oh-my-zsh
+  zstyle :omz:plugins:ssh-agent agent-forwarding on
+  ;;
+esac
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
