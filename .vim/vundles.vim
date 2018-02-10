@@ -1,25 +1,15 @@
-set nocompatible
-filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'Shougo/neocomplcache'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/unite.vim'
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'joshdick/onedark.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'tomasr/molokai'
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/unite.vim'
-Plugin 'sudo.vim'
-Plugin 'molokai'
-Plugin 'Zenburn'
-Plugin 'VimClojure'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'google.vim'
-Plugin 'elzr/vim-json'
-Plugin 'fatih/vim-go'
-Plugin 'joshdick/onedark.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'itchyny/vim-gitbranch'
-
-call vundle#end()
-filetype plugin indent on
+call plug#end()
