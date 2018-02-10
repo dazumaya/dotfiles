@@ -13,7 +13,7 @@ do
   ln -sfn $PWD/bin/$file $HOME/bin/$file
 done
 
-if [ ! -d ~/.vim/autoload/plug.vim ]; then
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   vim +PlugInstall +q +q
