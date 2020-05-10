@@ -1,0 +1,12 @@
+tap "clojure/tools"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+brew "ghq"
+brew "go"
+brew "hugo"
+brew "peco"
+brew "clojure/tools/clojure", args: ["devel"]
+cask "atom"
+cask "google-chrome"
+cask "iterm2"
