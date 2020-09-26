@@ -5,6 +5,7 @@ tap "homebrew/core"
 brew "ghq"
 brew "go"
 brew "hugo"
+brew "ack"
 brew "peco"
 brew "clojure/tools/clojure", args: ["devel"]
 cask "atom"

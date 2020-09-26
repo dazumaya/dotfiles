@@ -11,5 +11,6 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'joshdick/onedark.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'tomasr/molokai'
+Plug 'chriskempson/vim-tomorrow-theme'
 
 call plug#end()
