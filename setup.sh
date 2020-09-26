@@ -14,7 +14,7 @@ do
 done
 
 if [ ! -f ~/bin/ack ]; then
-  curl https://beyondgrep.com/ack-2.22-single-file > ~/bin/ack && chmod 0755 ~/bin/ack
+  curl https://beyondgrep.com/ack-v3.4.0 > ~/bin/ack && chmod 0755 ~/bin/ack
 fi
 
 if [ ! -f ~/.zplug/init.zsh ]; then
