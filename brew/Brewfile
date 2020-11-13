@@ -1,13 +1,31 @@
+tap "borkdude/brew"
 tap "clojure/tools"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+brew "ack"
 brew "ghq"
 brew "go"
 brew "hugo"
-brew "ack"
+brew "leiningen"
+brew "mas"
 brew "peco"
-brew "clojure/tools/clojure", args: ["devel"]
+brew "borkdude/brew/clj-kondo"
+brew "clojure/tools/clojure"
 cask "atom"
+cask "cmd-eikana"
 cask "google-chrome"
+cask "google-japanese-ime"
+cask "imageoptim"
 cask "iterm2"
+cask "visual-studio-code"
+mas "Amphetamine", id: 937984704
+mas "Bear", id: 1091189122
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Reeder", id: 880001334
+mas "Xcode", id: 497799835
